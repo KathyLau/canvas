@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <style>
+    #slate {
+    border: thick solid blue;
+    }
+  </style>
+  </head>
+
+<script>
+var c = document.getElementById("slate");
+vat ctx = c.getContext("2d");
+
+ctx.fillStyle = "#ff0000";
+ctx.fillRect( 50, 50, 100, 200);
+</script>
+
+  
+  <h1>Canvas</h1>
+
+  <canvas width="500" height="500" id="slate">
+    
+  </canvas>
+  
+  <br>
+  <br>
+  
+  <button type="button" id="clear">Clear</button>
+
+</html>
