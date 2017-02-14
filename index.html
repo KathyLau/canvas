@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
   <style>
-    #slate {
+  #slate {
     border: thick solid blue;
-    }
+  }
   </style>
-  </head>
+</head>
 
-<script>
-var c = document.getElementById("slate");
-vat ctx = c.getContext("2d");
-
-ctx.fillStyle = "#ff0000";
-ctx.fillRect( 50, 50, 100, 200);
-</script>
-
-  
   <h1>Canvas</h1>
 
-  <canvas width="500" height="500" id="slate">
-    
-  </canvas>
+  ToolBar : <br>
+
+  <select id="style">
+    <option value="default">Default</option>
+    <option value="conn">Connect Rects</option>
+  </select>
+
+  Color
+  <select id="colors" >
+  <option value="#ff0000">Red</option>
+  <option value="#dc2127">Dark red</option>
+  <option value="#fbd75b">Yellow</option>
+  <option value="#ffb878">Orange</option>
+  <option value="#dbadff">Purple</option>
+  <option value="#7bd148">Green</option>
+  <option value="#5484ed">Bold blue</option>
+  <option value="#a4bdfc">Blue</option>
+  <option value="#46d6db">Turquoise</option>
+  <option value="#7ae7bf">Light green</option>
+  <option value="#51b749">Bold green</option>
+  <option value="#e1e1e1">Gray</option>
+</select>
+
+  Size
+  <input type="range" id="myRange" value="90">
+
+<button type="button" id="clear">Clear</button>
+<br><br>
+
+  <canvas width="500" height="500" id="slate"> </canvas>
   
-  <br>
-  <br>
-  
-  <button type="button" id="clear">Clear</button>
+<script src="canvas.js"> </script>
 
 </html>
