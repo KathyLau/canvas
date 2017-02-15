@@ -5,40 +5,48 @@ var ctx = c.getContext("2d");
 //set default variables
 ctx.fillStyle = "#ff0000";
 var color = "#FF0000";
-var style="default";
-var size , prevX, prevY;
-document.getElementById("myRange").value = "50";
+var style="conn";
+var size, prevX, prevY;
+var dots = 0;
+document.getElementById("myRange").value = "10";
 
 
 //clear canvas
 var clear = function(){
+  dots=0;
   ctx.clearRect(0,0,c.width, c.height);
 }
 
 
-//draw rectangle on click
-//extra feat. : store prev rect's coordinates to connect later
-var drawRect = function(e){
+var draw = function(e){
   ctx.fillStyle=color;
   var size = document.getElementById("myRange").value;
-  var x = e.clientX - c.offsetLeft;
-  var y = e.clientY - c.offsetTop;
-  ctx.fillRect(x, y, size, size);
+  var x = e.offsetX;
+  var y = e.offsetY;
+
+  if (style=="rect") {ctx.fillRect(x, y, size, size);}
 
   if (style=="conn") { //if connect feature is selected, connect rectangles
-  ctx.beginPath();
-  ctx.moveTo(prevX, prevY);
-	ctx.lineTo(x, y);
-	ctx.strokeStyle = "#000000";
-	ctx.stroke();
+    ctx.beginPath();
+
+    if (dots != 0) {
+      ctx.moveTo(prevX, prevY);
+	    ctx.lineTo(x, y);
+	    ctx.stroke(); }
+
+    ctx.moveTo(x,y);
+    ctx.arc(x, y, size, 10, 20);
+    ctx.stroke();
+    ctx.fill();
+
+    dots++;
+    prevX = x;
+    prevY = y;
+}
 }
 
-  prevX = x;
-  prevY = y;
-}
 
-
-c.addEventListener("click", drawRect);
+c.addEventListener("click", draw);
 
 var button = document.getElementById("clear");
 button.addEventListener("click", clear);
@@ -46,11 +54,9 @@ button.addEventListener("click", clear);
 //get color selected
 document.getElementById('colors').addEventListener('change', function() {
   color = this.options[this.options.selectedIndex].value;
-  console.log(color);
 });
 
 //get style selected
 document.getElementById('style').addEventListener('change', function() {
   style = this.options[this.options.selectedIndex].value;
-  console.log(style);
 });
